@@ -117,7 +117,7 @@
 			</div>
 
 			<div class="contect_text">So we can successfully match your details with suitable people, we first need to collect some information about you. Read each question carfully and  select or place a tick in the box for each of your characteristics. Please answer as honestly as you can, otherwise you may be disappointed with your matches and they with you.</div>
-
+<form action="#" id="myform">
 			<div class="form_container_block">
 				<ul>
 					<li class="fileds">
@@ -192,7 +192,7 @@
 									</li>
 									<li>
 										<select name="day" class="select day" id="days">
-											
+											<!-- <option value="date"></option> -->
 										</select>
 									</li>
 
@@ -233,7 +233,7 @@
 									</li>
 								</ul>
 								<span id="cond13" style="color: red;display:none">Please select Month.</span>
-								<span id="cond14" style="color: red;display:none">Please select Day.</span>
+								<span id="cond14" style="color: red;display:none">Please select valid Day.</span>
 								<span id="cond15" style="color: red;display:none">Please select Year.</span>
 								<span id="cond16" style="color: red;display:none">&nbsp</span>
 							</div>
@@ -272,7 +272,7 @@
 				</ul>
 				<div class="next_btn_block">
 					<div class="next_btn">
-						<a class="c1">Submit<span><img src="images/small_triangle.png" alt="small_triangle"> </span></a>
+						<button class="c1" type="Submit">Submit<span><img src="images/small_triangle.png" alt="small_triangle"> </span></button>
 					</div>
 				</div>
 			</div>
@@ -280,7 +280,7 @@
 	</div>		
   </div>
   <!-- Content Section End-->
-
+</form>
 
 
 
@@ -464,44 +464,59 @@ Live a life without regrets and take action today!</p>
 		$("#days").next(".select").html("Date");
 	});
 </script>
+
 <script type="text/javascript">
 
 $(document).ready(function()
 {
+	var flag=true;
   $(".c1").click(function()
   {
+  	
     if($("#test").val()=="")
     {
     	$("#d").css({"visibility":"visible"});
-    	$("#d").fadeIn();
-	}
-	else
+  	    $("#d").fadeIn();
+  	    flag=false;
+    }
+    else
 	{
 		$("#d").css({"visibility":"hidden"});
+		//flag=true;
 	}
+
+//console.log("firsname flag : "+flag);
+//return false;
 
 	if($("#test1").val()=="")
     {
-    	$("#d").css({"visibility":"visible"});
+    	$("#d1").css({"visibility":"visible"});
   	    $("#d1").fadeIn();
+  	    flag=false;
     }
     else
 	{
 		$("#d1").css({"visibility":"hidden"});
+		//flag=true;
 	}
+
+//console.log("lastname flag : "+flag);
+//return false;
 
     var numberReg =  /^[0-9]+$/; 
 	var phone=$('#test2').val();
 	var numReg = /^([0-9]{10})+$/;
     if($("#test2").val()=="")
     {
-    	$("#d").css({"visibility":"visible"});
+    	$("#d2").css({"visibility":"visible"});
     	$("#d2").fadeIn();
+    	flag=false;
     }
     else if (!numberReg.test(phone))
 	{
 	    $("#d2").empty();
 	    $("#cond1").fadeIn();
+	    flag=false;;
 	}
 	else 
 	{
@@ -510,11 +525,14 @@ $(document).ready(function()
     		$("#d2").empty();
     		$("#cond1").empty();
     		$("#cond2").fadeIn();
+    		flag=false;
     	}
     	else
     	{
+    		$("#cond1").css({"visibility":"hidden"});
     		$("#cond2").css({"visibility":"hidden"});
     		$("#d2").css({"visibility":"hidden"});
+    		//flag=true;
     	}
     }
     
@@ -531,10 +549,13 @@ $(document).ready(function()
     	{
     		$("#cond12").empty();
     		$("#cond3").fadeIn();
+    		flag=false;
     	}
     	else
     	{
     		$("#cond3").css({"visibility":"hidden"});
+    		$("#cond12").css({"visibility":"hidden"});
+    		//flag=true;
     	}
     }
     
@@ -545,6 +566,7 @@ $(document).ready(function()
 	if($("#test4").val()=="")
     {
     	$("#d4").fadeIn();
+    	flag=false;
 	}
 	else
 	{ 
@@ -552,11 +574,13 @@ $(document).ready(function()
     	{
     		$("#d4").empty();
 	    	$("#cond4").fadeIn();
+	    	flag=false;
     	}
     	else
     	{
     		$("#d4").css({"visibility":"hidden"});
     		$("#cond4").css({"visibility":"hidden"});
+    		//flag=true;
     	}
     }
 
@@ -566,6 +590,7 @@ $(document).ready(function()
 	if($("#test5").val()=="")
     {
     	$("#d5").fadeIn();
+    	flag=false;
 	}
 	else
 	{
@@ -574,16 +599,19 @@ $(document).ready(function()
 		if (!passw.test(psw)) 
 		{
 			$("#cond5").fadeIn();
+			flag=false;
 		}
 		else if (!pw.test(psw)) 
 		{
 			$("#cond5").empty();
 			$("#cond6").fadeIn();
+			flag=false;
 		}
 		else
 		{
 			$("#cond5").css({"visibility":"hidden"});
 			$("#cond6").css({"visibility":"hidden"});
+			//flag=true;
 		}
 	}
 	
@@ -591,6 +619,7 @@ $(document).ready(function()
 	if($("#test6").val()=="")
     {
     	$("#cond7").fadeIn();
+    	flag=false;
 	}
 	else
 	{
@@ -598,11 +627,13 @@ $(document).ready(function()
 		{
 			$("#cond7").empty();
 			$("#cond8").fadeIn();
+			flag=false;
 		}
 		else
 		{
 			$("#cond7").css({"visibility":"hidden"});
 			$("#cond8").css({"visibility":"hidden"});
+			//flag=true;
 		}
 	}
 	
@@ -610,96 +641,72 @@ $(document).ready(function()
 	if($("#test7").val()=="")
     {
     	$("#d7").fadeIn();
+    	flag=false;
 	}
 	else
 	{
 		$("#d7").css({"visibility":"hidden"});
+		//flag=true;
 	}
 
 	if($("#residence1").prop("checked") == false && $("#residence2").prop("checked") == false)
 	{
         $("#cond9").fadeIn();
+        flag=false;
     }
     else
     {
     	$("#cond9").css({"visibility":"hidden"});
+    	//flag=true;
     }
 
 	if($("#checkbox_sample18").is(":not(:checked)") && $("#checkbox_sample19").is(":not(:checked)") && $("#checkbox_sample20").is(":not(:checked)"))
 	{
 		$("#cond10").fadeIn();
+		flag=false;
 	}
 	else
 	{
 		$("#cond10").css({"visibility":"hidden"});
+		//flag=true;
 	}
-
+	
+	$("#cond13").fadeOut();
+	$("#cond14").fadeOut();
+	$("#cond15").fadeOut();
 	if ($("#months").val()=="Month") 
 	{
-		$("#cond13").fadeIn();
+		
+			$("#cond13").fadeIn();
+			flag=false;
+		
 	}
-	else if($("#days").val()=="Day")
+	else if($("#days").val() == "Date")
 	{
-		$("#cond13").empty();
-		$("#cond14").fadeIn();
+		
+			$("#cond14").fadeIn();
+			flag=false;
+		
 	}
 	else if($("#year").val()=="Year")
 	{
-		$("#cond13").empty();
-		$("#cond14").empty();
-		$("#cond15").fadeIn();
+		
+			$("#cond15").fadeIn();
+			flag=false;
+		
 	}
 	else
 	{
-		$("#cond13").empty();
-		$("#cond14").empty();
 		$("#cond15").css({"visibility":"hidden"});
+		//flag=true;
 	}
-	
+	  	return flag;
+
+
   });
-});
 
-
-$(document).ready(function()
-{
   $("#months").click(function()
   {
-  	$("#days").empty();
-  	var mon=$("#months").val();
-
-  	if (mon==1 || mon==3 || mon==5 || mon==7 || mon==8 || mon==10 || mon==12) 
-  	{
-  		$("#days").next(".select").html("Date");
-  		for (var i = 1; i <= 31; i++) 
-		{
-     		$('#days').append("<option value="+i+">"+i+"</option>");
-  		}	 
-  	}
-  	else if(mon==4 || mon==6 || mon==9 || mon==11)
-	{
-		for (var i = 1; i <= 30; i++) 
-		{
-			$('#days').append($("<option></option>").text(i));
-		}
-	}
-	else
-	{
-		for (var i = 1; i <= 28; i++) 
-		{
-			$('#days').append($("<option></option>").text(i));
-		}
-	}
-  });
-});
-
-$(document).ready(function()
-{
-  $("#months").click(function()
-  {
-  		if ($("#months").val()=="Month")
-  		{
-  			return false;
-  		}
 		birth_month= $("#months").val();
 		birth_year= $("#year").val();
 	    today_date = new Date();
@@ -724,14 +731,69 @@ $(document).ready(function()
 	    var day = $("#days").val();
    	    if (today_day < day ) 
    	    {
-   	    	months=months-1;	
+   	    	months=months-2;	
    	    }
-   	    $('.age').val(year+'.'+months+' years');
-	});
-});
+   	    if ($("#days ").val()=="Date" || $("#year").val()=="Year")
+  		{
+  			$('.age').val("");
+  			flag=false;
+  		}
+  		else
+  		{
+   	    	$('.age').val(year+'.'+months+' years');
+		}
 
-$(document).ready(function()
-{
+	$("#days").empty();
+  	var mon=$("#months").val();
+  	$("#days").next(".select").html("Date");
+
+  	if (mon==1 || mon==3 || mon==5 || mon==7 || mon==8 || mon==10 || mon==12) 
+  	{
+  		
+  		for (var i = 0; i <= 31; i++) 
+		{
+			if(i == 0) 
+			{
+	     		$('#days').append("<option value="+'Date'+">"+'Date'+"</option>");
+			} 
+			else 
+			{
+	     		$('#days').append("<option value="+i+">"+i+"</option>");
+			}
+  		}	 
+  	}
+  	else if(mon==4 || mon==6 || mon==9 || mon==11)
+	{
+		for (var i = 0; i <= 30; i++) 
+		{
+			if(i == 0) 
+			{
+	     		$('#days').append("<option value="+'Date'+">"+'Date'+"</option>");
+			} 
+			else 
+			{
+	     		$('#days').append("<option value="+i+">"+i+"</option>");
+			}
+		}
+	}
+	else
+	{
+		for (var i = 0; i <= 28; i++) 
+		{
+			if(i == 0) 
+			{
+	     		$('#days').append("<option value="+'Date'+">"+'Date'+"</option>");
+			} 
+			else 
+			{
+	     		$('#days').append("<option value="+i+">"+i+"</option>");
+			}
+		}
+	}
+	});
+
+
+
   $("#year").click(function()
   {
 		birth_month= $("#months").val();
@@ -758,11 +820,66 @@ $(document).ready(function()
 	    var day = $("#days").val();
    	    if (today_day < day ) 
    	    {
-   	    	months=months-1;	
+   	    	months=months-2;	
    	    }
-   	    $('.age').val(year+'.'+months+' years');  
+   	    if ($("#months").val()=="Month" || $("#days").val()=="Date")
+  		{
+  			$('.age').val("");
+  			flag=false;
+  		}
+  		else
+  		{
+   	    	$('.age').val(year+'.'+months+' years');
+   	    	//flag=true;
+		}  
 	});
-});
+
+
+  $("#days").click(function()
+  {
+		birth_month= $("#months").val();
+		birth_year= $("#year").val();
+	    today_date = new Date();
+	    today_year = today_date.getFullYear();
+	    today_month = today_date.getMonth()+1;
+	    today_day = today_date.getDate();
+	    age = today_year - birth_year;
+
+	    if ( today_month < (birth_month))
+	    {
+	        var calmon=birth_month-today_month-1;
+	        var total_months=(age*12)-calmon;
+	    }
+	    else
+	    {
+	    	var calmon=today_month-birth_month;	
+	    	var total_months=(age*12)+calmon;
+	    }
+	   
+	    var year=Math.floor(total_months/12);
+	    var months=total_months%12;
+	    var day = $("#days").val();
+   	    if (today_day < day ) 
+   	    {
+   	    	months=months-2;	
+   	    }
+   	    if ($("#months").val()=="Month" || $("#year").val()=="Year")
+  		{
+  			$('.age').val("");
+  			flag=false;
+  		}
+  		else
+  		{
+   	    	$('.age').val(year+'.'+months+' years');
+   	    	//return true;
+		}  
+	});
+  	return flag;
+  	if(flag==true)
+  	{
+  		$("#myform").trigger('reset');
+  	}
+  });
 </script>
 </body>
 </html>
