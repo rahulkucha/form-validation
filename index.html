@@ -117,7 +117,7 @@
 			</div>
 
 			<div class="contect_text">So we can successfully match your details with suitable people, we first need to collect some information about you. Read each question carfully and  select or place a tick in the box for each of your characteristics. Please answer as honestly as you can, otherwise you may be disappointed with your matches and they with you.</div>
-<form action="#" id="myform">
+<form action="#" id="myform" method="POST">
 			<div class="form_container_block">
 				<ul>
 					<li class="fileds">
@@ -469,10 +469,9 @@ Live a life without regrets and take action today!</p>
 
 $(document).ready(function()
 {
-	var flag=true;
   $(".c1").click(function()
   {
-  	
+  	var flag=true;
     if($("#test").val()=="")
     {
     	$("#d").css({"visibility":"visible"});
@@ -484,9 +483,6 @@ $(document).ready(function()
 		$("#d").css({"visibility":"hidden"});
 		//flag=true;
 	}
-
-//console.log("firsname flag : "+flag);
-//return false;
 
 	if($("#test1").val()=="")
     {
@@ -700,9 +696,15 @@ $(document).ready(function()
 		$("#cond15").css({"visibility":"hidden"});
 		//flag=true;
 	}
-	  	return flag;
 
-
+	if(flag==true)
+	{
+		return flag;
+	}
+	else
+	{
+		return false;
+	}
   });
 
   $("#months").click(function()
@@ -736,7 +738,7 @@ $(document).ready(function()
    	    if ($("#days ").val()=="Date" || $("#year").val()=="Year")
   		{
   			$('.age').val("");
-  			flag=false;
+  			//flag=false;
   		}
   		else
   		{
@@ -825,7 +827,7 @@ $(document).ready(function()
    	    if ($("#months").val()=="Month" || $("#days").val()=="Date")
   		{
   			$('.age').val("");
-  			flag=false;
+  			//flag=false;
   		}
   		else
   		{
@@ -866,7 +868,7 @@ $(document).ready(function()
    	    if ($("#months").val()=="Month" || $("#year").val()=="Year")
   		{
   			$('.age').val("");
-  			flag=false;
+  			//flag=false;
   		}
   		else
   		{
@@ -874,11 +876,6 @@ $(document).ready(function()
    	    	//return true;
 		}  
 	});
-  	return flag;
-  	if(flag==true)
-  	{
-  		$("#myform").trigger('reset');
-  	}
   });
 </script>
 </body>
